@@ -24,4 +24,10 @@ public class StudentService {
         if (studentOptional.isPresent()) throw new IllegalStateException("EMAIL ALREADY EXISTS");
         studentRepository.save(student);
     }
+
+    public void deleteStudent(Long id) {
+        boolean exists = studentRepository.existsById(id);
+        if (!exists) throw new IllegalStateException("ID " + id + " NOT FOUND");
+        studentRepository.deleteById(id);
+    }
 }
